@@ -63,8 +63,15 @@ public class battle_flow : MonoEditorDebug
                 EnterBattle();
                 break;
             case Phase.victory:
+                EnterVictory();
                 break;
         }
+    }
+
+    private void EnterVictory()
+    {
+        if(OnVictory != null)
+            OnVictory();
     }
 
     private void EnterBattle()
@@ -88,5 +95,11 @@ public class battle_flow : MonoEditorDebug
     void OnCountDownComplete()
     {
         EnterState(Phase.battle);
+    }
+    public void OnWinner(int winner_idx)
+    {
+        EnterState(Phase.victory);
+
+        //start some kind of coroutine?
     }
 }

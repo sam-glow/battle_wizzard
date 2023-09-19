@@ -34,21 +34,21 @@ public class wizzard_input : MonoEditorDebug
 
         keyButtonMap = new Dictionary<KeyCode, EButton>()
         { 
-            {player_index == 0 ? KeyCode.Joystick1Button14 : KeyCode.Joystick2Button14, EButton.A},
-            {player_index == 0 ? KeyCode.Joystick1Button13 : KeyCode.Joystick2Button13, EButton.B},
-            {player_index == 0 ? KeyCode.Joystick1Button15 : KeyCode.Joystick2Button15, EButton.X},
-            {player_index == 0 ? KeyCode.Joystick1Button12 : KeyCode.Joystick2Button12, EButton.Y},
+            {player_index == 0 ? KeyCode.Joystick1Button0 : KeyCode.Joystick2Button0, EButton.A},
+            {player_index == 0 ? KeyCode.Joystick1Button1 : KeyCode.Joystick2Button1, EButton.B},
+            {player_index == 0 ? KeyCode.Joystick1Button2 : KeyCode.Joystick2Button2, EButton.X},
+            {player_index == 0 ? KeyCode.Joystick1Button3 : KeyCode.Joystick2Button3, EButton.Y},
 
-            {player_index == 0 ? KeyCode.Joystick1Button4 : KeyCode.Joystick2Button4, EButton.Up},
-            {player_index == 0 ? KeyCode.Joystick1Button5 : KeyCode.Joystick2Button5, EButton.Down},
-            {player_index == 0 ? KeyCode.Joystick1Button6 : KeyCode.Joystick2Button6, EButton.Left},
-            {player_index == 0 ? KeyCode.Joystick1Button7 : KeyCode.Joystick2Button7, EButton.Right},
+            //{player_index == 0 ? KeyCode.Joystick1Button4 : KeyCode.Joystick2Button4, EButton.Up},
+            //{player_index == 0 ? KeyCode.Joystick1Button5 : KeyCode.Joystick2Button5, EButton.Down},
+            //{player_index == 0 ? KeyCode.Joystick1Button6 : KeyCode.Joystick2Button6, EButton.Left},
+            //{player_index == 0 ? KeyCode.Joystick1Button7 : KeyCode.Joystick2Button7, EButton.Right},
 
-            {player_index == 0 ? KeyCode.Joystick1Button8 : KeyCode.Joystick2Button8, EButton.L1},
-            {player_index == 0 ? KeyCode.Joystick1Button9 : KeyCode.Joystick2Button9, EButton.L2},
+            {player_index == 0 ? KeyCode.Joystick1Button4 : KeyCode.Joystick2Button8, EButton.L1},
+            //{player_index == 0 ? KeyCode.Joystick1Button9 : KeyCode.Joystick2Button9, EButton.L2},
 
-            {player_index == 0 ? KeyCode.Joystick1Button10 : KeyCode.Joystick2Button10, EButton.R1},
-            {player_index == 0 ? KeyCode.Joystick1Button11 : KeyCode.Joystick2Button11, EButton.R2},
+            {player_index == 0 ? KeyCode.Joystick1Button5 : KeyCode.Joystick2Button5, EButton.R1},
+            //{player_index == 0 ? KeyCode.Joystick1Button11 : KeyCode.Joystick2Button11, EButton.R2},
         };
     }
 
@@ -76,8 +76,11 @@ public class wizzard_input : MonoEditorDebug
                 if (Input.GetKeyDown(kvp.Key))
                     active_buttons.Add(kvp.Value);
 
-            var logic = GetComponent<battle_logic>();
-            logic.SetInput(player_index, active_buttons);
+            if (active_buttons.Count > 0)
+            {
+                var logic = GetComponent<battle_logic>();
+                logic.SetInput(player_index, active_buttons);
+            }
         }
     }
 }
