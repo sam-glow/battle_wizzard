@@ -10,13 +10,18 @@ public class battle_flow : MonoEditorDebug
     public event Action OnVictory;
     public event Action OnWait;
 
-
     [SerializeField] Animator m_countDownAnimator;
+    [SerializeField] private int max_lives = 2;
+
+    int p1_lives = 0;
+    int p2_lives = 0;
+
     enum Phase
     {
         count_down,
         battle,
         victory,
+        winner,
         none
     }
 
@@ -31,6 +36,7 @@ public class battle_flow : MonoEditorDebug
         var cd = m_countDownAnimator.GetBehaviour<count_down_anim_exit>();
         cd.onExit += OnCountDownComplete;
 
+        p1_lives = p2_lives = max_lives;
     }
 
     void Update()
@@ -39,7 +45,6 @@ public class battle_flow : MonoEditorDebug
         {
             default: break;
             case Phase.count_down:
-                DoCountDown();
                 break;
             case Phase.battle:
                 break;
@@ -87,19 +92,29 @@ public class battle_flow : MonoEditorDebug
         m_countDownAnimator.SetTrigger("start");
     }
 
-    void DoCountDown()
-    {
-        
-    }
-
     void OnCountDownComplete()
     {
         EnterState(Phase.battle);
     }
-    public void OnWinner(int winner_idx)
+    public void OnPlayerVictory(int winner_idx)
     {
         EnterState(Phase.victory);
 
         //start some kind of coroutine?
+
+        if (winner_idx == 0)
+        {
+            if (--p2_lives <= 0)
+            {
+                EnterState(Phase.winner);
+            }
+        }
+        else
+        {
+            if (--p1_lives <= 0)
+            {
+                EnterState(Phase.winner);
+            }
+        }
     }
 }
