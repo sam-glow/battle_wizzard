@@ -81,3 +81,6 @@ battle_wizard/Logs/AssetImportWorker1.log
 battle_wizard/Logs/shadercompiler-AssetImportWorker0.log
 battle_wizard/Logs/shadercompiler-UnityShaderCompiler.exe0.log
 *.log
+battle_wizard/Logs/AssetImportWorker0.log
+battle_wizard/Logs/AssetImportWorker1.log
+battle_wizard/Logs/shadercompiler-UnityShaderCompiler.exe0.log
