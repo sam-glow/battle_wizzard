@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class battle_flow : MonoEditorDebug
 {
+    public event Action OnCountDown;
+    public event Action OnBattle;
+    public event Action OnVictory;
+    public event Action OnWait;
+
+
     [SerializeField] Animator m_countDownAnimator;
     enum Phase
     {
@@ -54,14 +60,23 @@ public class battle_flow : MonoEditorDebug
                 EnterCountDown();
                 break;
             case Phase.battle:
+                EnterBattle();
                 break;
             case Phase.victory:
                 break;
         }
     }
 
+    private void EnterBattle()
+    {
+        if (OnBattle != null)
+            OnBattle();
+    }
+
     private void EnterCountDown()
     {
+        if (OnCountDown != null)
+            OnCountDown();
         m_countDownAnimator.SetTrigger("start");
     }
 
