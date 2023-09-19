@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class battle_flow : MonoBehaviour
+public class battle_flow : MonoEditorDebug
 {
     [SerializeField] Animator m_countDownAnimator;
     enum Phase
@@ -14,11 +14,17 @@ public class battle_flow : MonoBehaviour
         none
     }
 
-    Phase phase;
+    Phase phase = Phase.none;
+
+    [ExposeInInspector()] Phase CurrentPhase { get { return phase; } }
 
     void Start()
     {
-        phase = Phase.count_down;
+        EnterState(Phase.count_down);
+
+        var cd = m_countDownAnimator.GetBehaviour<count_down_anim_exit>();
+        cd.onExit += OnCountDownComplete;
+
     }
 
     void Update()
@@ -36,9 +42,33 @@ public class battle_flow : MonoBehaviour
         }
     }
 
+    void EnterState(Phase _phase)
+    {
+        switch (_phase)
+        {
+            default: break;
+            case Phase.count_down:
+                EnterCountDown();
+                break;
+            case Phase.battle:
+                break;
+            case Phase.victory:
+                break;
+        }
+    }
+
+    private void EnterCountDown()
+    {
+        m_countDownAnimator.SetTrigger("start");
+    }
+
     void DoCountDown()
     {
-        m_countDownAnimator.StartPlayback();
-        m_countDownAnimator.SetBool("start", true);
+        
+    }
+
+    void OnCountDownComplete()
+    {
+        phase = Phase.battle;
     }
 }
