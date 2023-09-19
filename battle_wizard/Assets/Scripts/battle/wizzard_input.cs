@@ -76,7 +76,8 @@ public class wizzard_input : MonoEditorDebug
                 if (Input.GetKeyDown(kvp.Key))
                     active_buttons.Add(kvp.Value);
 
-
+            var logic = GetComponent<battle_logic>();
+            logic.SetInput(player_index, active_buttons);
         }
     }
 }
