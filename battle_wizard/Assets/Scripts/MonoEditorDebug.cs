@@ -127,16 +127,16 @@ public abstract class MonoEditorDebug : MonoBehaviour
     static bool CanSerialiseType(System.Type _type)
     {
         var param = !_type.IsEnum ? _type : typeof(System.Enum);
-        if (!UnitySerialiseFieldByType.ContainsKey (_type))
+        if (!UnitySerialiseFieldByType.ContainsKey (param))
         {
-            if (typeof(UnityEngine.Object).IsAssignableFrom(_type))
+            if (typeof(UnityEngine.Object).IsAssignableFrom(param))
             {
                 var methodTemplate = typeof(MonoBehaviourEditor).GetMethod("DrawMonobehaviour", BindingFlags.Static | BindingFlags.NonPublic);
-                var newMethod = methodTemplate.MakeGenericMethod(_type);
+                var newMethod = methodTemplate.MakeGenericMethod(param);
                 var serialiseDelegate = (SerialiseParameter) Delegate.CreateDelegate(typeof(SerialiseParameter), newMethod);
-                UnitySerialiseFieldByType.Add(_type, serialiseDelegate);
+                UnitySerialiseFieldByType.Add(param, serialiseDelegate);
             }
-            if (!UnitySerialiseFieldByType.ContainsKey(_type))
+            if (!UnitySerialiseFieldByType.ContainsKey(param))
                 return false;
         }
         return UnitySerialiseFieldByType.ContainsKey(param);

@@ -42,6 +42,7 @@ public class battle_flow : MonoEditorDebug
         }
     }
 
+    [EditorDebugMethod(false)]
     void EnterState(Phase _phase)
     {
         phase = _phase;
