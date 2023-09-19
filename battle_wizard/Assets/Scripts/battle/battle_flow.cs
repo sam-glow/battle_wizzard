@@ -44,7 +44,9 @@ public class battle_flow : MonoEditorDebug
 
     void EnterState(Phase _phase)
     {
-        switch (_phase)
+        phase = _phase;
+
+        switch (phase)
         {
             default: break;
             case Phase.count_down:
