@@ -337,6 +337,7 @@ GameObject:
   - component: {fileID: 2108872992}
   - component: {fileID: 2108872995}
   - component: {fileID: 2108872994}
+  - component: {fileID: 2108872996}
   m_Layer: 0
   m_Name: battle_control
   m_TagString: Untagged
@@ -384,6 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6e70264d9ded81458fb8e05012bd2c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_index: 1
+  visual: {fileID: 0}
 --- !u!114 &2108872995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +397,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f6e70264d9ded81458fb8e05012bd2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_index: 0
+  visual: {fileID: 0}
+--- !u!114 &2108872996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108872991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c8d0ee92a5f65d439b1edb2b40dd7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &964084024501065838

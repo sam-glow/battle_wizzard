@@ -87,6 +87,6 @@ public class battle_flow : MonoEditorDebug
 
     void OnCountDownComplete()
     {
-        phase = Phase.battle;
+        EnterState(Phase.battle);
     }
 }
