@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 4357268179199401762}
   - component: {fileID: 2136289180337844017}
   m_Layer: 0
-  m_Name: countdown
+  m_Name: end_of_round
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
