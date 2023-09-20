@@ -11,7 +11,6 @@ public class battle_logic : MonoEditorDebug
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
     private List<HashSet<EButton>> prev_frame_input = new List<HashSet<EButton>>();
 
-
     private int progress = 0;
 
     private EButton[] last_valid_input = new EButton[2]
@@ -43,6 +42,7 @@ public class battle_logic : MonoEditorDebug
     private void OnBattle()
     {
         isActive = true;
+        progress = 0;
     }
 
     public void SetInput(int idx, HashSet<EButton> input)

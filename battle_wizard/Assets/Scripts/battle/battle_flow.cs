@@ -13,6 +13,16 @@ public class battle_flow : MonoEditorDebug
     [SerializeField] Animator m_countDownAnimator;
     [SerializeField] private int max_lives = 2;
 
+    [SerializeField] private GameObject countDownPrefab;
+    [SerializeField] private GameObject battlePrefab;
+    [SerializeField] private GameObject victoryPrefab;
+    [SerializeField] private GameObject finalVictoryPrefab;
+
+    [SerializeField] private float count_down_prefab_life = 5f;
+    [SerializeField] private float battle_prefab_life = 5f;
+    [SerializeField] private float victory_prefab_life = 5f;
+    [SerializeField] private float finalVictory_prefab_life = 5f;
+
     int p1_lives = 0;
     int p2_lives = 0;
 
@@ -70,13 +80,23 @@ public class battle_flow : MonoEditorDebug
             case Phase.victory:
                 EnterVictory();
                 break;
+            case Phase.winner:
+                break;
         }
+    }
+
+    IEnumerator RunVictoryStage(float time)
+    {
+        yield return new WaitForSeconds(time);
+        EnterState(Phase.count_down);
     }
 
     private void EnterVictory()
     {
         if(OnVictory != null)
             OnVictory();
+
+        StartCoroutine(RunVictoryStage(3f));
     }
 
     private void EnterBattle()
@@ -89,6 +109,7 @@ public class battle_flow : MonoEditorDebug
     {
         if (OnCountDown != null)
             OnCountDown();
+
         m_countDownAnimator.SetTrigger("start");
     }
 
@@ -108,12 +129,20 @@ public class battle_flow : MonoEditorDebug
             {
                 EnterState(Phase.winner);
             }
+            else
+            {
+                EnterState(Phase.victory);
+            }
         }
         else
         {
             if (--p1_lives <= 0)
             {
                 EnterState(Phase.winner);
+            }
+            else
+            {
+                EnterState(Phase.victory);
             }
         }
     }
