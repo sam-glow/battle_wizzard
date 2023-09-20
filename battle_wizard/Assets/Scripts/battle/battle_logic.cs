@@ -163,7 +163,7 @@ public class battle_logic : MonoEditorDebug
         if (Mathf.Abs(progress) >= max_score)
         {
             var flow = GetComponent<battle_flow>();
-            flow.OnPlayerVictory(progress > 0 ? 1 : 0);
+            flow.OnPlayerVictory(progress > 0 ? 0 : 1);
         }
     }
 
