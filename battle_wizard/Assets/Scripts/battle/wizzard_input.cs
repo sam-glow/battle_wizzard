@@ -31,6 +31,7 @@ public class wizzard_input : MonoEditorDebug
         battle_flow.OnBattle += OnBattle;
         battle_flow.OnCountDown+= OnCountDown;
         battle_flow.OnVictory += OnVictory;
+        battle_flow.OnWinner += OnWinner;
 
         keyButtonMap = new Dictionary<KeyCode, EButton>()
         { 
@@ -63,6 +64,11 @@ public class wizzard_input : MonoEditorDebug
     }
 
     void OnVictory()
+    {
+        isActive = false;
+    }
+
+    void OnWinner()
     {
         isActive = false;
     }

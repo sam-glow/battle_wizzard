@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class battle_flow : MonoEditorDebug
 {
     public event Action OnCountDown;
     public event Action OnBattle;
     public event Action OnVictory;
-    public event Action OnWait;
+    public event Action OnWinner;
 
     [SerializeField] Animator m_countDownAnimator;
     [SerializeField] private int max_lives = 2;
@@ -81,8 +82,23 @@ public class battle_flow : MonoEditorDebug
                 EnterVictory();
                 break;
             case Phase.winner:
+                EnterWinner();
                 break;
         }
+    }
+
+    IEnumerator RunWinnerStage(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(0);
+    }
+
+    private void EnterWinner()
+    {
+        if (OnWinner != null)
+            OnWinner();
+
+        StartCoroutine(RunWinnerStage(3f));
     }
 
     IEnumerator RunVictoryStage(float time)
@@ -119,10 +135,6 @@ public class battle_flow : MonoEditorDebug
     }
     public void OnPlayerVictory(int winner_idx)
     {
-        EnterState(Phase.victory);
-
-        //start some kind of coroutine?
-
         if (winner_idx == 0)
         {
             if (--p2_lives <= 0)
