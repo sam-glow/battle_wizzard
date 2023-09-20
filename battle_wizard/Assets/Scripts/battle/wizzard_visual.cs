@@ -138,6 +138,12 @@ public class wizzard_visual : MonoBehaviour
             cast_vfx_instance = Instantiate(blue_spell_prefab, transform, false);
         if (button == EButton.Y)
             cast_vfx_instance = Instantiate(yellow_spell_prefab, transform, false);
+
+        vibration_timer = 1f;
+
+        _state = state.aggresive;
+        override_time = 0.15f;
+        sprites.SetState(_state);
     }
     void OnDamage(int _v)
     {
@@ -194,6 +200,7 @@ public class wizzard_visual : MonoBehaviour
             gb.transform.position = sprites.Wand().transform.position;
         }
 
+        //state stuff here]
         override_time -= Time.deltaTime;
         if (override_time < 0f)
             override_time = 0f;

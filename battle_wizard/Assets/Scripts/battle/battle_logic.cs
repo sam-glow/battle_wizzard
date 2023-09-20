@@ -29,6 +29,11 @@ public class battle_logic : MonoEditorDebug
         EButton.Count, EButton.Count
     };
 
+    private EButton[] last_cast_spell = new EButton[2]
+    {
+        EButton.Count, EButton.Count
+    };
+
     EButton[] element_buttons = new EButton[3]
     {
         EButton.B,
@@ -140,8 +145,8 @@ public class battle_logic : MonoEditorDebug
                      {
                          if (last_valid_input[i] == element_buttons[j])
                          {
-                             spell_casts[i] = element_buttons[j]; 
-                             last_valid_input[i] = element_buttons[j];
+                             spell_casts[i] = element_buttons[j];
+                             last_valid_input[i] = EButton.Count;
                              break;
                          }
                      }
@@ -168,13 +173,20 @@ public class battle_logic : MonoEditorDebug
 
         //did we both cast?
         bool was_clash = false;
-        EButton p1 = spell_casts[0] != EButton.Count ? spell_casts[0] : last_valid_input[0];
-        EButton p2 = spell_casts[1] != EButton.Count ? spell_casts[1] : last_valid_input[1];
+        EButton p1 = did_p1_cast ? spell_casts[0] : last_cast_spell[0];
+        EButton p2 = did_p2_cast ? spell_casts[1] : last_cast_spell[1];
 
         if (did_p1_cast)
+        {
             OnCast(0, p1);
+            last_cast_spell[0] = p1;
+        }
+
         if (did_p2_cast)
+        {
             OnCast(1, p2);
+            last_cast_spell[1] = p2;
+        }
 
         progress += DoDamage(p1, p2, did_p1_cast, did_p2_cast, ref was_clash);
 
