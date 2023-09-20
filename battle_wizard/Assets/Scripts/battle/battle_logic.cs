@@ -13,15 +13,12 @@ public class battle_logic : MonoEditorDebug
     public event Action<int> OnDamage;
 
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
-    private List<HashSet<EButton>> prev_frame_input = new List<HashSet<EButton>>();
 
-    [SerializeField] private wizzard_visual player_1_visual;
-    [SerializeField] private wizzard_visual player_2_visual;
     [SerializeField] int max_score = 100;
 
     [SerializeField] Vector3 p1_point;
     [SerializeField] Vector3 p2_point;
-    [SerializeField] GameObject vfx_point;
+    [SerializeField] public GameObject vfx_point;
 
     private int progress = 0;
     private float progress_visual = 0f;
@@ -37,8 +34,8 @@ public class battle_logic : MonoEditorDebug
         EButton.X,
         EButton.Y
     };
-    [ExposeInInspector("Progress: ")] int Progress => progress;
-    [ExposeInInspector("Progress visual: ")] float visualP => progress_visual;
+    [ExposeInInspector("Progress: ")] public int Progress => progress;
+    [ExposeInInspector("Progress visual: ")] public float visualP => progress_visual;
     [ExposeInInspector("player 1: ")] EButton p1ayer_1 => last_valid_input[0];
     [ExposeInInspector("player 2: ")] EButton player_2 => last_valid_input[1];
 

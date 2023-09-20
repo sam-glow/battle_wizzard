@@ -1,8 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Random = System.Random;
 
 public class wizzard_visual : MonoBehaviour
 {
@@ -18,7 +20,8 @@ public class wizzard_visual : MonoBehaviour
     private GameObject cast_vfx_instance;
     private wizzard_sprite sprites;
 
-    private float vibration_amp = 0f;
+    private float vibration_timer = 0f;
+    private Vector3 initial_pos;
 
     public enum state
     {
@@ -32,7 +35,11 @@ public class wizzard_visual : MonoBehaviour
         striggle
     }
 
-void Start()
+    private float override_time = 0f;
+    private state _state_override = state.relax;
+    private state _state;
+
+    void Start()
     {
         var bf = FindFirstObjectByType<battle_flow>();
         bf.OnCountDown += OnCountDown;
@@ -55,7 +62,10 @@ void Start()
         var go = Instantiate(prefab, transform, false);
         sprites = go.GetComponent<wizzard_sprite>();
 
-        sprites.SetState(state.relax);
+        _state = state.relax;
+        sprites.SetState(_state);
+        override_time = 0f;
+        initial_pos = gameObject.transform.position;
     }
 
     void OnWinner(int _v)
@@ -118,7 +128,12 @@ void Start()
     }
     void OnDamage(int _v)
     {
+        if(_v == idx)
+            vibration_timer = 1.0f;
 
+        _state_override = state.hit;
+
+        override_time = 0.2f;
     }
 
     void SetState(state _s)
@@ -128,6 +143,74 @@ void Start()
 
     void Update()
     {
+        //get our base state
+        var flow = FindFirstObjectByType<battle_flow>();
+        var logic = FindFirstObjectByType<battle_logic>();
 
+        //VIBRATION
+        vibration_timer -= Time.deltaTime;
+        float vb_progress = Mathf.Pow(vibration_timer, 4);
+        if (vibration_timer >= 0f)
+        {
+            float alpha = UnityEngine.Random.value;
+            sprites.transform.localPosition = new Vector3(
+                vb_progress * Mathf.PerlinNoise1D(15f * (Time.time + UnityEngine.Random.value)),
+                vb_progress * Mathf.PerlinNoise1D(15f * (Time.time + UnityEngine.Random.value)),
+                0f
+            );
+        }
+        else
+        {
+            vibration_timer = 0f;
+            sprites.transform.localPosition = Vector3.zero;
+        }
+
+        //wand update
+        var lines = GetComponentsInChildren<LineRendererTwoPoints>();
+        for (int i = 0; i < lines.Length; i++)
+        {
+            lines[i].pos1 = sprites.Wand().transform;
+            lines[i].pos2 = logic.vfx_point.transform;
+        }
+
+        var particles_to_target = GetComponentsInChildren<ParticlesToTarget>();
+        for (int i = 0; i < particles_to_target.Length; i++)
+        {
+            particles_to_target[i].Target = logic.vfx_point.transform;
+        }
+
+        state base_state = _state;
+
+        switch (flow.CurrentPhase)
+        {
+            case battle_flow.Phase.count_down:
+                base_state = state.relax;
+                break;
+            case battle_flow.Phase.battle:
+                float progress = idx == 0 ? logic.visualP : 1f - logic.visualP;
+                if (progress > 0.7f)
+                    base_state = state.slmost_win;
+                else if (progress > 0.4f)
+                    base_state = state.relax;
+                else if (progress > 0.25f)
+                    base_state = state.striggle;
+                else
+                    base_state = state.almost_dead;
+                break;
+            case battle_flow.Phase.victory:
+                base_state = flow.LastVictor == idx ? state.relax : state.dead;
+                break;
+            case battle_flow.Phase.winner:
+                base_state = flow.LastVictor == idx ? state.relax : state.dead;
+                break;
+            case battle_flow.Phase.none:
+                break;
+        }
+
+        if (base_state != _state)
+        {
+            _state = base_state;
+            sprites.SetState(base_state);
+        }
     }
 }

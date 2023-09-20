@@ -14,6 +14,14 @@ public class wizzard_sprite : MonoBehaviour
     [SerializeField] private GameObject relax;
     [SerializeField] private GameObject struggling;
 
+    public GameObject Wand()
+    {
+        foreach (Transform t in transform)
+            if(t.gameObject.active)
+                return t.GetChild(0).gameObject;
+
+        return this.gameObject;
+    }
     public void SetState(wizzard_visual.state _s)
     {
         aggressive.SetActive(false);
