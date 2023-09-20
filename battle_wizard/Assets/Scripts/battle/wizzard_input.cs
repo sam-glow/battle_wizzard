@@ -65,12 +65,12 @@ public class wizzard_input : MonoEditorDebug
 
     void OnVictory(int _v)
     {
-        isActive = false;
+        isActive = true;
     }
 
     void OnWinner(int _v)
     {
-        isActive = false;
+        isActive = true;
     }
 
     void Update()

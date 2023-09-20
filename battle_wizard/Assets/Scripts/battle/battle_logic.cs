@@ -63,16 +63,19 @@ public class battle_logic : MonoEditorDebug
 
     void OnCountDown()
     {
+        isActive = false;
         EnableWandClashVfx(false);
     }
 
     void OnVictory(int _v)
     {
+        isActive = false;
         EnableWandClashVfx(false);
     }
 
     void OnWinner(int _v)
     {
+        isActive = false;
         EnableWandClashVfx(false);
     }
 
