@@ -10,6 +10,7 @@ public class battle_logic : MonoEditorDebug
     private bool isActive = false;
 
     public event Action<int, EButton> OnCast;
+    public event Action<int> OnDamage;
 
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
     private List<HashSet<EButton>> prev_frame_input = new List<HashSet<EButton>>();
@@ -183,6 +184,8 @@ public class battle_logic : MonoEditorDebug
             {
                 is_clash = true;
                 //stun them?
+                OnDamage(0);
+                OnDamage(1);
                 return 0;
             }
 
@@ -199,18 +202,25 @@ public class battle_logic : MonoEditorDebug
         {
             //attacker whiffs?
             damage = did_p1_cast ? 2 : -2;
+            OnDamage(did_p1_cast ? 1 : 0);
         }
         else if (diff == 1)
         {
             //p2 does damage
             if (did_p2_cast)
+            {
                 damage = -5;
+                OnDamage(0);
+            }
         }
         else if (diff == 2)
         {
             //p1 does damage
             if (did_p1_cast)
+            {
                 damage = 5;
+                OnDamage(1);
+            }
         }
 
         return Mathf.FloorToInt(mult * damage);

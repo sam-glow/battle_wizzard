@@ -16,8 +16,23 @@ public class wizzard_visual : MonoBehaviour
 
     private GameObject death_vfx_instance;
     private GameObject cast_vfx_instance;
+    private wizzard_sprite sprites;
 
-    void Start()
+    private float vibration_amp = 0f;
+
+    public enum state
+    {
+        aggresive,
+        almost_dead, 
+        slmost_win,
+        hit,
+        celebrate,
+        dead,
+        relax,
+        striggle
+    }
+
+void Start()
     {
         var bf = FindFirstObjectByType<battle_flow>();
         bf.OnCountDown += OnCountDown;
@@ -27,7 +42,7 @@ public class wizzard_visual : MonoBehaviour
 
         var bl = FindFirstObjectByType<battle_logic>();
         bl.OnCast += OnCast;
-
+        bl.OnDamage += OnDamage;
 
         var player_selection = FindFirstObjectByType<player_char_selection>();
         var prefabs = FindFirstObjectByType<wizzard_prefabs>();
@@ -35,8 +50,10 @@ public class wizzard_visual : MonoBehaviour
         int selection = player_selection.GetSelection(idx);
         GameObject prefab = prefabs.GetPrefab(selection, idx);
 
-        Instantiate(prefab, transform, false);
         SetWandVfx(false);
+
+        var go = Instantiate(prefab, transform, false);
+        sprites = go.GetComponent<wizzard_sprite>();
     }
 
     void OnWinner(int _v)
@@ -96,5 +113,19 @@ public class wizzard_visual : MonoBehaviour
             cast_vfx_instance = Instantiate(blue_spell_prefab, transform, false);
         if (button == EButton.Y)
             cast_vfx_instance = Instantiate(yellow_spell_prefab, transform, false);
+    }
+    void OnDamage(int _v)
+    {
+
+    }
+
+    void SetState(state _s)
+    {
+        sprites.SetState(_s);
+    }
+
+    void Update()
+    {
+
     }
 }
