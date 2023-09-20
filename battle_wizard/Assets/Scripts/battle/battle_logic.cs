@@ -10,6 +10,8 @@ public class battle_logic : MonoEditorDebug
 {
     private bool isActive = false;
 
+    public event Action<int, EButton> OnCast;
+
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
     private List<HashSet<EButton>> prev_frame_input = new List<HashSet<EButton>>();
 
@@ -157,7 +159,12 @@ public class battle_logic : MonoEditorDebug
         EButton p1 = spell_casts[0] != EButton.Count ? spell_casts[0] : last_valid_input[0];
         EButton p2 = spell_casts[1] != EButton.Count ? spell_casts[1] : last_valid_input[1];
 
-        progress +=  DoDamage(p1, p2, did_p1_cast, did_p2_cast, ref was_clash);
+        if (did_p1_cast)
+            OnCast(0, p1);
+        if (did_p2_cast)
+            OnCast(1, p2);
+
+        progress += DoDamage(p1, p2, did_p1_cast, did_p2_cast, ref was_clash);
 
         //someone has won
         if (Mathf.Abs(progress) >= max_score)
