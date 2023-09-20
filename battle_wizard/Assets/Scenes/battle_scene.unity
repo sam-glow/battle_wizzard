@@ -328,10 +328,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5207231981707349836, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6031271931951425529, guid: dafadabb503340c4da08289798185c5a, type: 3}
       propertyPath: m_Name
       value: Environment
