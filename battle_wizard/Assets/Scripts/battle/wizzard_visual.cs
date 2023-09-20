@@ -54,6 +54,8 @@ void Start()
 
         var go = Instantiate(prefab, transform, false);
         sprites = go.GetComponent<wizzard_sprite>();
+
+        sprites.SetState(state.relax);
     }
 
     void OnWinner(int _v)
