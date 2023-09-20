@@ -14,7 +14,11 @@ public class wizzard_visual : MonoBehaviour
     [SerializeField] private GameObject blue_spell_prefab;
     [SerializeField] private GameObject yellow_spell_prefab;
 
+    [SerializeField] private List<GameObject> go_to_move_to_wand;
+
     [SerializeField] private int idx;
+    private float damage_time = 0.2f;
+    private float celebrate_time = 0.2f;
 
     private GameObject death_vfx_instance;
     private GameObject cast_vfx_instance;
@@ -36,8 +40,9 @@ public class wizzard_visual : MonoBehaviour
     }
 
     private float override_time = 0f;
-    private state _state_override = state.relax;
     private state _state;
+    private state prev_base_state;
+    private state base_state;
 
     void Start()
     {
@@ -50,6 +55,7 @@ public class wizzard_visual : MonoBehaviour
         var bl = FindFirstObjectByType<battle_logic>();
         bl.OnCast += OnCast;
         bl.OnDamage += OnDamage;
+        bl.OnCelebrate += OnCelebrate;
 
         var player_selection = FindFirstObjectByType<player_char_selection>();
         var prefabs = FindFirstObjectByType<wizzard_prefabs>();
@@ -62,12 +68,21 @@ public class wizzard_visual : MonoBehaviour
         var go = Instantiate(prefab, transform, false);
         sprites = go.GetComponent<wizzard_sprite>();
 
-        _state = state.relax;
+        prev_base_state = base_state = _state = state.relax; 
         sprites.SetState(_state);
         override_time = 0f;
         initial_pos = gameObject.transform.position;
     }
 
+    void OnCelebrate(int _v)
+    {
+        if (_v != idx)
+            return;
+
+        override_time = celebrate_time;
+        _state = state.celebrate;
+        sprites.SetState(_state);
+    }
     void OnWinner(int _v)
     {
         DestroyImmediate(cast_vfx_instance);
@@ -117,8 +132,6 @@ public class wizzard_visual : MonoBehaviour
         if (idx != _V)
             return;
 
-        DestroyImmediate(cast_vfx_instance);
-
         if (button == EButton.B)
             cast_vfx_instance = Instantiate(red_spell_prefab, transform, false);
         if (button == EButton.X)
@@ -128,17 +141,13 @@ public class wizzard_visual : MonoBehaviour
     }
     void OnDamage(int _v)
     {
-        if(_v == idx)
-            vibration_timer = 1.0f;
+        if (_v != idx)
+            return;
 
-        _state_override = state.hit;
-
-        override_time = 0.2f;
-    }
-
-    void SetState(state _s)
-    {
-        sprites.SetState(_s);
+        vibration_timer = 1.0f;
+        _state = state.hit;
+        sprites.SetState(_state);
+        override_time = damage_time;
     }
 
     void Update()
@@ -179,38 +188,60 @@ public class wizzard_visual : MonoBehaviour
             particles_to_target[i].Target = logic.vfx_point.transform;
         }
 
-        state base_state = _state;
+        for (int i = 0; i < go_to_move_to_wand.Count; i++)
+        {
+            var gb = go_to_move_to_wand[i];
+            gb.transform.position = sprites.Wand().transform.position;
+        }
 
+        override_time -= Time.deltaTime;
+        if (override_time < 0f)
+            override_time = 0f;
+
+        state new_state = base_state;
         switch (flow.CurrentPhase)
         {
             case battle_flow.Phase.count_down:
-                base_state = state.relax;
+                new_state = state.relax;
                 break;
             case battle_flow.Phase.battle:
                 float progress = idx == 0 ? logic.visualP : 1f - logic.visualP;
                 if (progress > 0.7f)
-                    base_state = state.slmost_win;
+                    new_state = state.slmost_win;
                 else if (progress > 0.4f)
-                    base_state = state.relax;
+                    new_state = state.relax;
                 else if (progress > 0.25f)
-                    base_state = state.striggle;
+                    new_state = state.striggle;
                 else
-                    base_state = state.almost_dead;
+                    new_state = state.almost_dead;
                 break;
             case battle_flow.Phase.victory:
-                base_state = flow.LastVictor == idx ? state.relax : state.dead;
+                new_state = flow.LastVictor == idx ? state.relax : state.dead;
                 break;
             case battle_flow.Phase.winner:
-                base_state = flow.LastVictor == idx ? state.relax : state.dead;
+                new_state = flow.LastVictor == idx ? state.relax : state.dead;
                 break;
             case battle_flow.Phase.none:
                 break;
         }
 
-        if (base_state != _state)
+        if (new_state != _state)
         {
-            _state = base_state;
-            sprites.SetState(base_state);
+            if (override_time > 0f)
+            {
+                if (new_state != prev_base_state)
+                {
+                    _state = base_state = new_state;
+                    sprites.SetState(_state);
+                }
+            }
+            else
+            {
+                _state = base_state = new_state;
+                sprites.SetState(_state);
+            }
         }
+
+        prev_base_state = base_state = new_state;
     }
 }

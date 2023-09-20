@@ -11,6 +11,7 @@ public class battle_logic : MonoEditorDebug
 
     public event Action<int, EButton> OnCast;
     public event Action<int> OnDamage;
+    public event Action<int> OnCelebrate;
 
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
 
@@ -57,6 +58,7 @@ public class battle_logic : MonoEditorDebug
     {
         isActive = true;
         progress = 0;
+        EnableWandClashVfx(true);
     }
 
     void OnCountDown()
@@ -111,7 +113,17 @@ public class battle_logic : MonoEditorDebug
         UpdateVfx();
 
         if (!isActive)
+        {
+            var battle_flow = GetComponent<battle_flow>();
+            if (battle_flow.CurrentPhase == battle_flow.Phase.victory || battle_flow.CurrentPhase == battle_flow.Phase.winner)
+            {
+                if (frame_input[battle_flow.LastVictor].Contains(EButton.A))
+                {
+                    OnCelebrate(battle_flow.LastVictor);
+                }
+            }
             return;
+        }
 
          //determine if we have just cast
         EButton[] spell_casts = { EButton.Count , EButton.Count};
