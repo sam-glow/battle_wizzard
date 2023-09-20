@@ -11,6 +11,8 @@ public class SpawnRandomMap : MonoBehaviour
     void Awake()
     {
         int randomIndex = Random.Range(0,maps.Length);
+
+        //maps[randomIndex].SetActive(true);
         Instantiate(maps[randomIndex], transform.position, transform.rotation);
     }
 }
