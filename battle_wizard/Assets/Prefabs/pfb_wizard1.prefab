@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4434006092060663852}
   - component: {fileID: 4434006092060663855}
   - component: {fileID: 4434006092060663854}
+  - component: {fileID: 9183257090534507427}
   m_Layer: 0
   m_Name: pfb_wizard1
   m_TagString: Wizard 1
@@ -192,6 +193,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &9183257090534507427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4434006092060663857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87040c24f82ffd6418f159bacdd55d24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathvfx: {fileID: 4827734047569125850, guid: 3ef1256d54e68e44e8b7fc2d1adc5d87, type: 3}
+  wand_vfx: {fileID: 4434006091389246137}
 --- !u!1001 &4568080514307987347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -312,5 +327,10 @@ PrefabInstance:
 --- !u!4 &4434006091389246132 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 211057898340125991, guid: c37b5dab87b5ef44b9cc8fbe66e8873d, type: 3}
+  m_PrefabInstance: {fileID: 4568080514307987347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4434006091389246137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 211057898340125994, guid: c37b5dab87b5ef44b9cc8fbe66e8873d, type: 3}
   m_PrefabInstance: {fileID: 4568080514307987347}
   m_PrefabAsset: {fileID: 0}

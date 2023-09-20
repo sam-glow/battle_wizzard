@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using AmplifyShaderEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,7 +13,16 @@ public class battle_logic : MonoEditorDebug
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
     private List<HashSet<EButton>> prev_frame_input = new List<HashSet<EButton>>();
 
+    [SerializeField] private wizzard_visual player_1_visual;
+    [SerializeField] private wizzard_visual player_2_visual;
+    [SerializeField] int max_score = 100;
+
+    [SerializeField] Vector3 p1_point;
+    [SerializeField] Vector3 p2_point;
+    [SerializeField] GameObject vfx_point;
+
     private int progress = 0;
+    private float progress_visual = 0f;
 
     private EButton[] last_valid_input = new EButton[2]
     {
@@ -25,6 +36,7 @@ public class battle_logic : MonoEditorDebug
         EButton.Y
     };
     [ExposeInInspector("Progress: ")] int Progress => progress;
+    [ExposeInInspector("Progress visual: ")] float visualP => progress_visual;
     [ExposeInInspector("player 1: ")] EButton p1ayer_1 => last_valid_input[0];
     [ExposeInInspector("player 2: ")] EButton player_2 => last_valid_input[1];
 
@@ -32,6 +44,9 @@ public class battle_logic : MonoEditorDebug
     {
         var battle_flow = GetComponent<battle_flow>();
         battle_flow.OnBattle += OnBattle;
+        battle_flow.OnCountDown+= OnCountDown;
+        battle_flow.OnVictory += OnVictory;
+        battle_flow.OnWinner+= OnWinner;
 
         frame_input.Add(new HashSet<EButton>());
         frame_input.Add(new HashSet<EButton>());
@@ -45,6 +60,26 @@ public class battle_logic : MonoEditorDebug
         progress = 0;
     }
 
+    void OnCountDown()
+    {
+        EnableWandClashVfx(false);
+    }
+
+    void OnVictory()
+    {
+        EnableWandClashVfx(false);
+    }
+
+    void OnWinner()
+    {
+        EnableWandClashVfx(false);
+    }
+
+    void EnableWandClashVfx(bool enable)
+    {
+        vfx_point.SetActive(enable);
+    }
+
     public void SetInput(int idx, HashSet<EButton> input)
     {
         frame_input[idx] = input;
@@ -55,10 +90,27 @@ public class battle_logic : MonoEditorDebug
         frame_input[0].Clear();
         frame_input[1].Clear();
     }
+    void UpdateVfx()
+    {
+        if (!isActive)
+        {
+            return;
+        }
+        else
+        {
+            //battle flow
+            progress_visual = (progress + max_score) / (float)(max_score * 2);
+            progress_visual = Mathf.Clamp01(progress_visual);
+            Vector3 pos = Vector3.Lerp(p1_point, p2_point, progress_visual);
+            vfx_point.transform.position = pos; 
+        }
+    }
 
     //NOTE: UPDATE EXECUTES LATE
     void Update()
     {
+        UpdateVfx();
+
         if (!isActive)
             return;
 
@@ -108,7 +160,7 @@ public class battle_logic : MonoEditorDebug
         progress +=  DoDamage(p1, p2, did_p1_cast, did_p2_cast, ref was_clash);
 
         //someone has won
-        if (Mathf.Abs(progress) >= 100)
+        if (Mathf.Abs(progress) >= max_score)
         {
             var flow = GetComponent<battle_flow>();
             flow.OnPlayerVictory(progress > 0 ? 1 : 0);
