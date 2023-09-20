@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -26,10 +27,21 @@ public class wizzard_visual : MonoBehaviour
 
         var bl = FindFirstObjectByType<battle_logic>();
         bl.OnCast += OnCast;
+
+
+        var player_selection = FindFirstObjectByType<player_char_selection>();
+        var prefabs = FindFirstObjectByType<wizzard_prefabs>();
+
+        int selection = player_selection.GetSelection(idx);
+        GameObject prefab = prefabs.GetPrefab(selection, idx);
+
+        Instantiate(prefab, transform, false);
+        SetWandVfx(false);
     }
 
     void OnWinner(int _v)
     {
+        DestroyImmediate(cast_vfx_instance);
         SetWandVfx(false);
 
         if (idx != _v)
@@ -44,17 +56,20 @@ public class wizzard_visual : MonoBehaviour
 
     void OnCountDown()
     {
+        DestroyImmediate(cast_vfx_instance);
         Destroy(death_vfx_instance);
         SetWandVfx(false);
     }
 
     void OnBattle()
     {
+        DestroyImmediate(cast_vfx_instance);
         SetWandVfx(true);
     }
 
     void OnVictory(int _v)
     {
+        DestroyImmediate(cast_vfx_instance);
         SetWandVfx(false);
 
         if (idx != _v)

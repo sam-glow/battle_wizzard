@@ -42,12 +42,18 @@ public class battle_flow : MonoEditorDebug
 
     void Start()
     {
-        EnterState(Phase.count_down, 0);
-
         var cd = m_countDownAnimator.GetBehaviour<count_down_anim_exit>();
         cd.onExit += OnCountDownComplete;
 
         p1_lives = p2_lives = max_lives;
+
+        StartCoroutine(DoNextFrame(() => { EnterState(Phase.count_down, 0); }));
+    }
+
+    IEnumerator DoNextFrame(Action action)
+    {
+        yield return null;
+        action();
     }
 
     void Update()

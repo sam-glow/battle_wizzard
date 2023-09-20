@@ -5,7 +5,6 @@ using AmplifyShaderEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
 public class battle_logic : MonoEditorDebug
 {
     private bool isActive = false;
@@ -199,7 +198,7 @@ public class battle_logic : MonoEditorDebug
         if (diff == 0)
         {
             //attacker whiffs?
-            damage = 2;
+            damage = did_p1_cast ? 2 : -2;
         }
         else if (diff == 1)
         {
