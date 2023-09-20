@@ -8,8 +8,8 @@ public class battle_flow : MonoEditorDebug
 {
     public event Action OnCountDown;
     public event Action OnBattle;
-    public event Action OnVictory;
-    public event Action OnWinner;
+    public event Action<int> OnVictory;
+    public event Action<int> OnWinner;
 
     [SerializeField] Animator m_countDownAnimator;
     [SerializeField] private int max_lives = 2;
@@ -42,7 +42,7 @@ public class battle_flow : MonoEditorDebug
 
     void Start()
     {
-        EnterState(Phase.count_down);
+        EnterState(Phase.count_down, 0);
 
         var cd = m_countDownAnimator.GetBehaviour<count_down_anim_exit>();
         cd.onExit += OnCountDownComplete;
@@ -65,7 +65,7 @@ public class battle_flow : MonoEditorDebug
     }
 
     [EditorDebugMethod(false)]
-    void EnterState(Phase _phase)
+    void EnterState(Phase _phase, int _victor)
     {
         phase = _phase;
 
@@ -73,16 +73,26 @@ public class battle_flow : MonoEditorDebug
         {
             default: break;
             case Phase.count_down:
-                EnterCountDown();
+                if (OnCountDown != null)
+                    OnCountDown();
+
+                m_countDownAnimator.SetTrigger("start");
                 break;
             case Phase.battle:
-                EnterBattle();
+                if (OnBattle != null)
+                    OnBattle();
                 break;
             case Phase.victory:
-                EnterVictory();
+                if (OnVictory != null)
+                    OnVictory(_victor);
+
+                StartCoroutine(RunVictoryStage(3f));
                 break;
             case Phase.winner:
-                EnterWinner();
+                if (OnWinner != null)
+                    OnWinner(_victor);
+
+                StartCoroutine(RunWinnerStage(3f));
                 break;
         }
     }
@@ -92,46 +102,15 @@ public class battle_flow : MonoEditorDebug
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene(0);
     }
-
-    private void EnterWinner()
-    {
-        if (OnWinner != null)
-            OnWinner();
-
-        StartCoroutine(RunWinnerStage(3f));
-    }
-
     IEnumerator RunVictoryStage(float time)
     {
         yield return new WaitForSeconds(time);
-        EnterState(Phase.count_down);
-    }
-
-    private void EnterVictory()
-    {
-        if(OnVictory != null)
-            OnVictory();
-
-        StartCoroutine(RunVictoryStage(3f));
-    }
-
-    private void EnterBattle()
-    {
-        if (OnBattle != null)
-            OnBattle();
-    }
-
-    private void EnterCountDown()
-    {
-        if (OnCountDown != null)
-            OnCountDown();
-
-        m_countDownAnimator.SetTrigger("start");
+        EnterState(Phase.count_down, 0);
     }
 
     void OnCountDownComplete()
     {
-        EnterState(Phase.battle);
+        EnterState(Phase.battle, 0);
     }
     public void OnPlayerVictory(int winner_idx)
     {
@@ -139,22 +118,22 @@ public class battle_flow : MonoEditorDebug
         {
             if (--p2_lives <= 0)
             {
-                EnterState(Phase.winner);
+                EnterState(Phase.winner, 0);
             }
             else
             {
-                EnterState(Phase.victory);
+                EnterState(Phase.victory, 0);
             }
         }
         else
         {
             if (--p1_lives <= 0)
             {
-                EnterState(Phase.winner);
+                EnterState(Phase.winner, 1);
             }
             else
             {
-                EnterState(Phase.victory);
+                EnterState(Phase.victory, 1);
             }
         }
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class wizzard_visual : MonoBehaviour
@@ -13,6 +14,12 @@ public class wizzard_visual : MonoBehaviour
         bf.OnCountDown += OnCountDown;
         bf.OnBattle+= OnBattle;
         bf.OnVictory+= OnVictory;
+        bf.OnWinner += OnWinner;
+    }
+
+    void OnWinner(int _v)
+    {
+        SetWandVfx(false);
     }
 
     void OnCountDown()
@@ -25,7 +32,7 @@ public class wizzard_visual : MonoBehaviour
         SetWandVfx(true);
     }
 
-    void OnVictory()
+    void OnVictory(int _v)
     {
         SetWandVfx(false);
     }

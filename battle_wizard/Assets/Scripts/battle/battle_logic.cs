@@ -65,12 +65,12 @@ public class battle_logic : MonoEditorDebug
         EnableWandClashVfx(false);
     }
 
-    void OnVictory()
+    void OnVictory(int _v)
     {
         EnableWandClashVfx(false);
     }
 
-    void OnWinner()
+    void OnWinner(int _v)
     {
         EnableWandClashVfx(false);
     }
