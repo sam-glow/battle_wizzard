@@ -261,8 +261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Herr HeftyHaft
   UI_mat: {fileID: 0}
-  tex: {fileID: 2800000, guid: 62c41037674b6f04fb98770bcce3404d, type: 3}
-  select_tex: {fileID: 21300000, guid: 5af84dc18d4ae004da99831d90b8350d, type: 3}
+  tex: {fileID: 2800000, guid: 4fa1c5299ee496d44a87a787c0151c87, type: 3}
+  select_tex: {fileID: 21300000, guid: 15e2c5e92291c6f43bf90b77f40a6df5, type: 3}
   index: 1
   stats:
   - 75

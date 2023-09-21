@@ -165,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4160214359421214549}
   - component: {fileID: 519515366888022552}
-  - component: {fileID: 2138009598602846251}
   - component: {fileID: 4118112954788716121}
   m_Layer: 0
   m_Name: wiz04_left
@@ -217,24 +216,6 @@ MonoBehaviour:
   dead: {fileID: 90556632127101447}
   relax: {fileID: 3519316371538160731}
   struggling: {fileID: 5330929157490648852}
---- !u!114 &2138009598602846251
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6349734875667643304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f890b5066778e5448b7e9f37242d676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Senior StiffStaff
-  UI_mat: {fileID: 0}
-  tex: {fileID: 2800000, guid: 8d7d19eb53d02d34e9554f6ce7f87c47, type: 3}
-  select_tex: {fileID: 0}
-  index: 0
-  stats: []
 --- !u!114 &4118112954788716121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Grimace McUnderpants
   UI_mat: {fileID: 0}
-  tex: {fileID: 2800000, guid: c04136b9ae49417499babe13d7da456f, type: 3}
+  tex: {fileID: 2800000, guid: 48235076c7d0880409406e7e1999e35c, type: 3}
   select_tex: {fileID: 21300000, guid: 2d6f98c720c0264469ea271b051a50b5, type: 3}
   index: 0
   stats:
