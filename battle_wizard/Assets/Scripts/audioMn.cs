@@ -35,9 +35,12 @@ public class audioMn : MonoBehaviour
         logic.OnCast += OnCast;
         logic.OnCelebrate += OnCelebrate;
 
+
         music = gameObject.AddComponent<AudioSource>();
         cast_0 = gameObject.AddComponent<AudioSource>();
         cast_1 = gameObject.AddComponent<AudioSource>();
+
+        music.volume = 0.5f;
     }
 
     private void OnCelebrate(int obj)
@@ -68,8 +71,6 @@ public class audioMn : MonoBehaviour
 
     private void OnBattle()
     {
-        music.clip = battleMusic;
-        music.Play();
     }
 
     private void OnWinner(int obj)

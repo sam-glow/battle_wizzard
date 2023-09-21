@@ -17,7 +17,7 @@ public class player_char_selection : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         else
-            DestroyImmediate(this.gameObject);
+            DestroyImmediate(this);
     }
 
     public int GetSelection(int player_index)

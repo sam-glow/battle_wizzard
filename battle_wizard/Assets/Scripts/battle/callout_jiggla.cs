@@ -93,7 +93,6 @@ public class callout_jiggla : MonoBehaviour
 
     private void OnBattle()
     {
-        ShowHide(true);
     }
 
     private void OnCountDown()

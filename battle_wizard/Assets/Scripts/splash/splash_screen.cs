@@ -31,10 +31,6 @@ public class splash_screen : MonoBehaviour
 
         button_ap = button.anchoredPosition;
     }
-    void OnClickStartButton()
-    {
-        SceneManager.LoadScene(1);
-    }
 
     void Update()
     {

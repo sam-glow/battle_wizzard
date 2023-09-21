@@ -49,14 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_countDownAnimator: {fileID: 0}
   max_lives: 2
-  countDownPrefab: {fileID: 0}
-  battlePrefab: {fileID: 0}
-  victoryPrefab: {fileID: 0}
-  finalVictoryPrefab: {fileID: 0}
-  count_down_prefab_life: 5
-  battle_prefab_life: 5
-  victory_prefab_life: 5
-  finalVictory_prefab_life: 5
 --- !u!114 &432495426307084862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +89,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c8d0ee92a5f65d439b1edb2b40dd7f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  max_score: 100
+  AnimeP1lines: {fileID: 1054137093026982666, guid: 31c12758822075a459b3e73feb707052, type: 3}
+  AnimeP2lines: {fileID: 1054137093026982666, guid: 96274432274c21c419dfe7d54eabe53a, type: 3}
   p1_point: {x: -7, y: -1, z: 0}
   p2_point: {x: 7, y: -1, z: 0}
   vfx_point: {fileID: 0}

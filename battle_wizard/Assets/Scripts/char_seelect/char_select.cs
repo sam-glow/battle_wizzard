@@ -110,6 +110,9 @@ public class char_select : MonoBehaviour
             p2_locked = false;
         }
 
+        if(Input.GetKeyDown(KeyCode.KeypadEnter))
+            p1_locked = p2_locked = true;
+
         if (p1_locked && p2_locked)
             SceneManager.LoadScene(2);
     }

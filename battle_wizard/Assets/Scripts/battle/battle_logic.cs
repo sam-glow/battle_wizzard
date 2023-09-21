@@ -17,12 +17,17 @@ public class battle_logic : MonoEditorDebug
 
     [SerializeField] int max_score = 100;
 
+    [SerializeField] private GameObject AnimeP1lines;
+    [SerializeField] private GameObject AnimeP2lines;
+
     [SerializeField] Vector3 p1_point;
     [SerializeField] Vector3 p2_point;
     [SerializeField] public GameObject vfx_point;
 
     private int progress = 0;
     private float progress_visual = 0f;
+
+    private GameObject vfx_lines = null;
 
     private EButton[] last_valid_input = new EButton[2]
     {
@@ -68,18 +73,24 @@ public class battle_logic : MonoEditorDebug
 
     void OnCountDown()
     {
+        if (vfx_lines != null)
+            Destroy(vfx_lines);
         isActive = false;
         EnableWandClashVfx(false);
     }
 
     void OnVictory(int _v)
     {
+        if (vfx_lines != null)
+            Destroy(vfx_lines);
         isActive = false;
         EnableWandClashVfx(false);
     }
 
     void OnWinner(int _v)
     {
+        if (vfx_lines != null)
+            Destroy(vfx_lines);
         isActive = false;
         EnableWandClashVfx(false);
     }
@@ -188,6 +199,7 @@ public class battle_logic : MonoEditorDebug
             last_cast_spell[1] = p2;
         }
 
+        int old_prog = progress;
         progress += DoDamage(p1, p2, did_p1_cast, did_p2_cast, ref was_clash);
 
         //someone has won
@@ -195,6 +207,24 @@ public class battle_logic : MonoEditorDebug
         {
             var flow = GetComponent<battle_flow>();
             flow.OnPlayerVictory(progress > 0 ? 0 : 1);
+        }
+
+        if (old_prog >= -70 && progress < -70)
+        {
+            if (vfx_lines != null)
+                Destroy(vfx_lines);
+            vfx_lines = Instantiate(AnimeP2lines, Vector3.zero, Quaternion.identity);
+        }
+        else if (progress > -70 && progress < 70)
+        {
+            if(vfx_lines != null)
+                Destroy(vfx_lines);
+        }
+        else if (old_prog <= 70 && progress > 70)
+        {
+            if (vfx_lines != null)
+                Destroy(vfx_lines);
+            vfx_lines = Instantiate(AnimeP1lines, Vector3.zero, Quaternion.identity);
         }
     }
 
