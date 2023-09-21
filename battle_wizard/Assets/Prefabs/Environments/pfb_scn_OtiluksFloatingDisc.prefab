@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6351390379872210082}
   - component: {fileID: 8969434429144865539}
   m_Layer: 0
-  m_Name: pfb_scn_otiluksFloatingDisc
+  m_Name: pfb_scn_OtiluksFloatingDisc
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14723,7 +14723,7 @@ Transform:
   m_GameObject: {fileID: 3371802556105035589}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70710576, y: -0, z: -0, w: 0.7071079}
-  m_LocalPosition: {x: 7.4, y: -360, z: 227}
+  m_LocalPosition: {x: 7.4, y: -299.8, z: 227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

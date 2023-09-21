@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 7582710300300102400}
   - component: {fileID: 6909845710016218530}
   m_Layer: 0
-  m_Name: pfb_scn_deathMountainII
+  m_Name: pfb_scn_DeathMountainII
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -472,7 +472,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 150
+      scalar: 222
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1173,7 +1173,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 44
+      scalar: 88
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4243,7 +4243,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 1
       maxCurve:
         serializedVersion: 2
