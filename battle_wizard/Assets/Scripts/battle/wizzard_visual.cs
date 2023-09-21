@@ -142,7 +142,7 @@ public class wizzard_visual : MonoBehaviour
 
         if (idx != 0)
         {
-            cast_vfx_instance.transform.rotation = Quaternion.Euler(Vector3.up * 90f);
+            cast_vfx_instance.transform.localRotation = Quaternion.Euler(Vector3.up * 180f);
         }
 
         vibration_timer = 1f;
