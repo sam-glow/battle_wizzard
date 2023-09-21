@@ -81,8 +81,6 @@ public class battle_logic : MonoEditorDebug
 
     void OnVictory(int _v)
     {
-        if (vfx_lines != null)
-            Destroy(vfx_lines);
         isActive = false;
         EnableWandClashVfx(false);
     }

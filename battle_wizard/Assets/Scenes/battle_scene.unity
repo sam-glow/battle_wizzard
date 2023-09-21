@@ -528,37 +528,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 730785296687056701, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6031271931951425529, guid: dafadabb503340c4da08289798185c5a, type: 3}
       propertyPath: m_Name
       value: Environment
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610267561591785733, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: maps.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6610267561591785733, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: maps.Array.data[0]
-      value: 
-      objectReference: {fileID: 4650461408119800016, guid: 56ce938d1ff4a0647a566fb0adc02c5e, type: 3}
-    - target: {fileID: 6610267561591785733, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: maps.Array.data[1]
-      value: 
-      objectReference: {fileID: 4535234796579110373, guid: aeb3bba3146f1ab4794d7c5b2af84222, type: 3}
-    - target: {fileID: 6610267561591785733, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: maps.Array.data[2]
-      value: 
-      objectReference: {fileID: 4650461408119800016, guid: 56ce938d1ff4a0647a566fb0adc02c5e, type: 3}
-    - target: {fileID: 7052123882819369514, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7829369150068952258, guid: dafadabb503340c4da08289798185c5a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8264482605925740980, guid: dafadabb503340c4da08289798185c5a, type: 3}
       propertyPath: m_LocalPosition.x
