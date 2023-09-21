@@ -12,6 +12,7 @@ public class char_select : MonoBehaviour
     public class char_selec_references
     {
         public Image Icon;
+        public Image Lock;
         public TextMeshProUGUI Name;
         public List<TextMeshProUGUI> stats;
     }
@@ -84,15 +85,29 @@ public class char_select : MonoBehaviour
            Refresh();
         }
 
+        refs[0].Lock.gameObject.SetActive(p1_locked);
+        refs[1].Lock.gameObject.SetActive(p2_locked);
+
+
         //confirm
         if (Input.GetKeyDown(KeyCode.Joystick1Button0))
         {
             p1_locked = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Joystick1Button1))
+        {
+            p1_locked = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.Joystick2Button0))
         {
             p2_locked = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Joystick2Button1))
+        {
+            p2_locked = false;
         }
 
         if (p1_locked && p2_locked)
