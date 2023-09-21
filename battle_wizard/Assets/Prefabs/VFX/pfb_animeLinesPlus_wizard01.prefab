@@ -4898,7 +4898,7 @@ GameObject:
   - component: {fileID: 4369968360498259063}
   - component: {fileID: 4573369026391241406}
   m_Layer: 0
-  m_Name: pfb_animeLinesPlus
+  m_Name: pfb_animeLinesPlus_wizard01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

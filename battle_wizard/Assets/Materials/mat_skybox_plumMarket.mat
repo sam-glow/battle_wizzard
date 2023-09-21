@@ -79,11 +79,11 @@ Material:
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
-    - _mult: 0.88
-    - _pwer: 0.8
+    - _mult: 1.05
+    - _pwer: 4.99
     m_Colors:
-    - _Bottom: {r: 0.5943396, g: 0.31175885, b: 0.104663536, a: 1}
+    - _Bottom: {r: 0.3191061, g: 0.8962264, b: 0.2508306, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Top: {r: 0.16025865, g: 0.3703439, b: 0.6886792, a: 1}
+    - _Top: {r: 0.055903632, g: 0.015367263, b: 0.066037714, a: 1}
   m_BuildTextureStacks: []
