@@ -64,7 +64,7 @@ MonoBehaviour:
   red_spell: {fileID: 8300000, guid: 83e53657a56e53544b1533230a45e33a, type: 3}
   DeathClip: {fileID: 8300000, guid: 2abc1ef656b75994580ca8277773c2cb, type: 3}
   CelebrateClip: {fileID: 8300000, guid: 0b84191f8566c4046b21b0b33dafc536, type: 3}
-  countdownMusic: {fileID: 8300000, guid: d0fce90ef3eab7b4786c2c3d256f90ff, type: 3}
-  battleMusic: {fileID: 0}
+  countdownMusic: {fileID: 8300000, guid: 4b44e8ef6a7917e42baaa50832a6f89e, type: 3}
+  battleMusic: {fileID: 8300000, guid: 5e9b446bf00b9634dbc79223fa36cf88, type: 3}
   victoryMusic: {fileID: 8300000, guid: f420d051326380b40b7a7a3b8b79de6a, type: 3}
   WinnerMusic: {fileID: 8300000, guid: f420d051326380b40b7a7a3b8b79de6a, type: 3}

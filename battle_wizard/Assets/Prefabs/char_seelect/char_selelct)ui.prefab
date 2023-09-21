@@ -90,7 +90,7 @@ MonoBehaviour:
     - {fileID: 4102630718295319510}
     - {fileID: 7539121615251540056}
     - {fileID: 1867136447140590135}
-  music: {fileID: 0}
+  music: {fileID: 8300000, guid: a337f97bc16297f47a9537c22b26c573, type: 3}
 --- !u!1001 &71727688238405803
 PrefabInstance:
   m_ObjectHideFlags: 0
