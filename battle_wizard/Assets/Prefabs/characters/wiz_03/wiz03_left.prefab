@@ -228,9 +228,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f890b5066778e5448b7e9f37242d676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Senior StiffStaff
+  name: Herr HardHaft
   UI_mat: {fileID: 0}
   tex: {fileID: 2800000, guid: 8d7d19eb53d02d34e9554f6ce7f87c47, type: 3}
+  select_tex: {fileID: 21300000, guid: 5af84dc18d4ae004da99831d90b8350d, type: 3}
+  index: 0
+  stats:
+  - 6000
+  - bagettes eaten
+  - 9001
+  - power level
+  - 500
+  - miles run
 --- !u!1 &8034617619708698338
 GameObject:
   m_ObjectHideFlags: 0
@@ -674,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8729218294548726414, guid: b8ea51092a7001040b6b739388d7309b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
