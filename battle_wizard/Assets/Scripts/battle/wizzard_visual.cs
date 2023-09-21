@@ -139,6 +139,11 @@ public class wizzard_visual : MonoBehaviour
         if (button == EButton.Y)
             cast_vfx_instance = Instantiate(yellow_spell_prefab, transform, false);
 
+        if (idx != 0)
+        {
+            cast_vfx_instance.transform.rotation = Quaternion.Euler(Vector3.forward * 180f);
+        }
+
         vibration_timer = 1f;
 
         _state = state.aggresive;
