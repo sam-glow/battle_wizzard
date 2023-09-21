@@ -97,13 +97,13 @@ public class battle_flow : MonoEditorDebug
                 if (OnVictory != null)
                     OnVictory(_victor);
 
-                StartCoroutine(RunVictoryStage(3f));
+                StartCoroutine(RunVictoryStage(5f));
                 break;
             case Phase.winner:
                 if (OnWinner != null)
                     OnWinner(_victor);
 
-                StartCoroutine(RunWinnerStage(3f));
+                StartCoroutine(RunWinnerStage(10f));
                 break;
         }
     }

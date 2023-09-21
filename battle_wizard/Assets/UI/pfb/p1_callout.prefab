@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5.98, y: 3.92}
-  m_SizeDelta: {x: 4.5578, y: 0.9571}
+  m_AnchoredPosition: {x: -6.1331, y: 3.9637}
+  m_SizeDelta: {x: 4.2567, y: 0.8538}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &6528826296431081481
 MeshRenderer:
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: withering gaze!
+  m_text: Fireball!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 485856018989425439d94b164578e089, type: 2}
   m_sharedMaterial: {fileID: 2397367924527954005, guid: 485856018989425439d94b164578e089, type: 2}
@@ -130,8 +130,8 @@ MonoBehaviour:
   m_fontSizeBase: 6
   m_fontWeight: 400
   m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMin: 2
+  m_fontSizeMax: 8
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
@@ -222,6 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9396f9ad344dbc946b2cc0a92052e8ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  idx: 0
+  text: {fileID: 6151467388675579404}
 --- !u!1 &5943115706513519524
 GameObject:
   m_ObjectHideFlags: 0
