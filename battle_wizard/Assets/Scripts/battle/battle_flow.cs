@@ -14,10 +14,15 @@ public class battle_flow : MonoEditorDebug
     [SerializeField] Animator m_countDownAnimator;
     [SerializeField] private int max_lives = 2;
 
+    private float max_round_time = 30f;
+
     int p1_lives = 0;
     int p2_lives = 0;
     int last_victor =  0;
-
+    private float round_time = 0f;
+    public int P1_Lives => p1_lives;
+    public int P2_Lives => p2_lives;
+    public float RoundTime => round_time;
     public enum Phase
     {
         count_down,
@@ -38,6 +43,7 @@ public class battle_flow : MonoEditorDebug
         cd.onExit += OnCountDownComplete;
 
         p1_lives = p2_lives = max_lives;
+        round_time = max_round_time;
 
         StartCoroutine(DoNextFrame(() => { EnterState(Phase.count_down, 0); }));
     }
@@ -56,6 +62,12 @@ public class battle_flow : MonoEditorDebug
             case Phase.count_down:
                 break;
             case Phase.battle:
+                round_time -= Time.deltaTime;
+                if (round_time < 0f)
+                {
+                    var logic = GetComponent<battle_logic>();
+                    OnPlayerVictory(logic.Progress > 0 ? 0 : 1);
+                }
                 break;
             case Phase.victory:
                 break;
@@ -77,6 +89,7 @@ public class battle_flow : MonoEditorDebug
                 m_countDownAnimator.SetTrigger("start");
                 break;
             case Phase.battle:
+                round_time = max_round_time;
                 if (OnBattle != null)
                     OnBattle();
                 break;

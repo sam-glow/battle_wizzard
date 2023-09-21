@@ -196,6 +196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4160214359421214549}
   - component: {fileID: 519515366888022552}
+  - component: {fileID: 1332731938155223273}
   m_Layer: 0
   m_Name: wiz01_right
   m_TagString: Untagged
@@ -246,6 +247,21 @@ MonoBehaviour:
   dead: {fileID: 90556632127101447}
   relax: {fileID: 3519316371538160731}
   struggling: {fileID: 5330929157490648852}
+--- !u!114 &1332731938155223273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6349734875667643304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f890b5066778e5448b7e9f37242d676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Herr HeftyHaft
+  UI_mat: {fileID: 0}
+  tex: {fileID: 2800000, guid: 62c41037674b6f04fb98770bcce3404d, type: 3}
 --- !u!1 &7046407345108830698
 GameObject:
   m_ObjectHideFlags: 0

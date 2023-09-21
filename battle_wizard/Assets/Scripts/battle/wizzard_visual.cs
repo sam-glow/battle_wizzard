@@ -26,6 +26,7 @@ public class wizzard_visual : MonoBehaviour
 
     private float vibration_timer = 0f;
     private Vector3 initial_pos;
+    public int Index => idx;
 
     public enum state
     {
@@ -141,7 +142,7 @@ public class wizzard_visual : MonoBehaviour
 
         if (idx != 0)
         {
-            cast_vfx_instance.transform.rotation = Quaternion.Euler(Vector3.forward * 180f);
+            cast_vfx_instance.transform.rotation = Quaternion.Euler(Vector3.up * 90f);
         }
 
         vibration_timer = 1f;
