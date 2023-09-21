@@ -87,6 +87,7 @@ Material:
     - _Emission: 7
     - _EmissionEnabled: 0
     - _FlipbookMode: 0
+    - _Float0: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -100,6 +101,7 @@ Material:
     - _SoftParticlesFarFadeDistance: 1
     - _SoftParticlesNearFadeDistance: 0
     - _SpecularHighlights: 1
+    - _Speed: 0
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
@@ -111,4 +113,5 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _Speed: {r: -4, g: 0, b: 0, a: 0}
+    - _Speed2: {r: -5, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
