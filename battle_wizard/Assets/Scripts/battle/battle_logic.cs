@@ -5,28 +5,31 @@ using AmplifyShaderEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-
 public class battle_logic : MonoEditorDebug
 {
     private bool isActive = false;
 
     public event Action<int, EButton> OnCast;
+    public event Action<int> OnDamage;
+    public event Action<int> OnCelebrate;
 
     private List<HashSet<EButton>> frame_input = new List<HashSet<EButton>>();
-    private List<HashSet<EButton>> prev_frame_input = new List<HashSet<EButton>>();
 
-    [SerializeField] private wizzard_visual player_1_visual;
-    [SerializeField] private wizzard_visual player_2_visual;
     [SerializeField] int max_score = 100;
 
     [SerializeField] Vector3 p1_point;
     [SerializeField] Vector3 p2_point;
-    [SerializeField] GameObject vfx_point;
+    [SerializeField] public GameObject vfx_point;
 
     private int progress = 0;
     private float progress_visual = 0f;
 
     private EButton[] last_valid_input = new EButton[2]
+    {
+        EButton.Count, EButton.Count
+    };
+
+    private EButton[] last_cast_spell = new EButton[2]
     {
         EButton.Count, EButton.Count
     };
@@ -37,8 +40,8 @@ public class battle_logic : MonoEditorDebug
         EButton.X,
         EButton.Y
     };
-    [ExposeInInspector("Progress: ")] int Progress => progress;
-    [ExposeInInspector("Progress visual: ")] float visualP => progress_visual;
+    [ExposeInInspector("Progress: ")] public int Progress => progress;
+    [ExposeInInspector("Progress visual: ")] public float visualP => progress_visual;
     [ExposeInInspector("player 1: ")] EButton p1ayer_1 => last_valid_input[0];
     [ExposeInInspector("player 2: ")] EButton player_2 => last_valid_input[1];
 
@@ -60,20 +63,24 @@ public class battle_logic : MonoEditorDebug
     {
         isActive = true;
         progress = 0;
+        EnableWandClashVfx(true);
     }
 
     void OnCountDown()
     {
+        isActive = false;
         EnableWandClashVfx(false);
     }
 
     void OnVictory(int _v)
     {
+        isActive = false;
         EnableWandClashVfx(false);
     }
 
     void OnWinner(int _v)
     {
+        isActive = false;
         EnableWandClashVfx(false);
     }
 
@@ -114,7 +121,17 @@ public class battle_logic : MonoEditorDebug
         UpdateVfx();
 
         if (!isActive)
+        {
+            var battle_flow = GetComponent<battle_flow>();
+            if (battle_flow.CurrentPhase == battle_flow.Phase.victory || battle_flow.CurrentPhase == battle_flow.Phase.winner)
+            {
+                if (frame_input[battle_flow.LastVictor].Contains(EButton.A))
+                {
+                    OnCelebrate(battle_flow.LastVictor);
+                }
+            }
             return;
+        }
 
          //determine if we have just cast
         EButton[] spell_casts = { EButton.Count , EButton.Count};
@@ -128,8 +145,8 @@ public class battle_logic : MonoEditorDebug
                      {
                          if (last_valid_input[i] == element_buttons[j])
                          {
-                             spell_casts[i] = element_buttons[j]; 
-                             last_valid_input[i] = element_buttons[j];
+                             spell_casts[i] = element_buttons[j];
+                             last_valid_input[i] = EButton.Count;
                              break;
                          }
                      }
@@ -156,13 +173,20 @@ public class battle_logic : MonoEditorDebug
 
         //did we both cast?
         bool was_clash = false;
-        EButton p1 = spell_casts[0] != EButton.Count ? spell_casts[0] : last_valid_input[0];
-        EButton p2 = spell_casts[1] != EButton.Count ? spell_casts[1] : last_valid_input[1];
+        EButton p1 = did_p1_cast ? spell_casts[0] : last_cast_spell[0];
+        EButton p2 = did_p2_cast ? spell_casts[1] : last_cast_spell[1];
 
         if (did_p1_cast)
+        {
             OnCast(0, p1);
+            last_cast_spell[0] = p1;
+        }
+
         if (did_p2_cast)
+        {
             OnCast(1, p2);
+            last_cast_spell[1] = p2;
+        }
 
         progress += DoDamage(p1, p2, did_p1_cast, did_p2_cast, ref was_clash);
 
@@ -184,6 +208,8 @@ public class battle_logic : MonoEditorDebug
             {
                 is_clash = true;
                 //stun them?
+                OnDamage(0);
+                OnDamage(1);
                 return 0;
             }
 
@@ -199,19 +225,26 @@ public class battle_logic : MonoEditorDebug
         if (diff == 0)
         {
             //attacker whiffs?
-            damage = 2;
+            damage = did_p1_cast ? 2 : -2;
+            OnDamage(did_p1_cast ? 1 : 0);
         }
         else if (diff == 1)
         {
             //p2 does damage
             if (did_p2_cast)
+            {
                 damage = -5;
+                OnDamage(0);
+            }
         }
         else if (diff == 2)
         {
             //p1 does damage
             if (did_p1_cast)
+            {
                 damage = 5;
+                OnDamage(1);
+            }
         }
 
         return Mathf.FloorToInt(mult * damage);

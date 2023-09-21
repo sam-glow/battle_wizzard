@@ -14,20 +14,11 @@ public class battle_flow : MonoEditorDebug
     [SerializeField] Animator m_countDownAnimator;
     [SerializeField] private int max_lives = 2;
 
-    [SerializeField] private GameObject countDownPrefab;
-    [SerializeField] private GameObject battlePrefab;
-    [SerializeField] private GameObject victoryPrefab;
-    [SerializeField] private GameObject finalVictoryPrefab;
-
-    [SerializeField] private float count_down_prefab_life = 5f;
-    [SerializeField] private float battle_prefab_life = 5f;
-    [SerializeField] private float victory_prefab_life = 5f;
-    [SerializeField] private float finalVictory_prefab_life = 5f;
-
     int p1_lives = 0;
     int p2_lives = 0;
+    int last_victor =  0;
 
-    enum Phase
+    public enum Phase
     {
         count_down,
         battle,
@@ -38,16 +29,23 @@ public class battle_flow : MonoEditorDebug
 
     Phase phase = Phase.none;
 
-    [ExposeInInspector()] Phase CurrentPhase { get { return phase; } }
+    [ExposeInInspector()] public Phase CurrentPhase { get { return phase; } }
+    public int LastVictor => last_victor;
 
     void Start()
     {
-        EnterState(Phase.count_down, 0);
-
         var cd = m_countDownAnimator.GetBehaviour<count_down_anim_exit>();
         cd.onExit += OnCountDownComplete;
 
         p1_lives = p2_lives = max_lives;
+
+        StartCoroutine(DoNextFrame(() => { EnterState(Phase.count_down, 0); }));
+    }
+
+    IEnumerator DoNextFrame(Action action)
+    {
+        yield return null;
+        action();
     }
 
     void Update()
@@ -116,6 +114,7 @@ public class battle_flow : MonoEditorDebug
     {
         if (winner_idx == 0)
         {
+            last_victor = 0;
             if (--p2_lives <= 0)
             {
                 EnterState(Phase.winner, 0);
@@ -127,6 +126,7 @@ public class battle_flow : MonoEditorDebug
         }
         else
         {
+            last_victor = 1;
             if (--p1_lives <= 0)
             {
                 EnterState(Phase.winner, 1);
