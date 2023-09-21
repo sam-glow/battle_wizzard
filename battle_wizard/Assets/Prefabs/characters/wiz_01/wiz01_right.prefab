@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f890b5066778e5448b7e9f37242d676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Herr HeftyHaft
+  name: Senior StiffStaff
   UI_mat: {fileID: 0}
   tex: {fileID: 2800000, guid: 62c41037674b6f04fb98770bcce3404d, type: 3}
   select_tex: {fileID: 21300000, guid: 015f38ddf4fc5ff478206fe80716ed89, type: 3}

@@ -88,6 +88,7 @@ MonoBehaviour:
     - {fileID: 4102630718295319510}
     - {fileID: 7539121615251540056}
     - {fileID: 1867136447140590135}
+  music: {fileID: 0}
 --- !u!1001 &71727688238405803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -450,6 +451,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5681098925346127219}
     m_Modifications:
+    - target: {fileID: 5621400581579720565, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 231.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621400581579720565, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 105.4964
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621400581579720565, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -107.58763
+      objectReference: {fileID: 0}
     - target: {fileID: 6954347385476304599, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 23.062317
@@ -488,6 +501,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6954347385476304599, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548489509352701237, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_text
+      value: senior stiff staff
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548489509352701237, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548489509352701237, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7548489509352701237, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
+      propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8006664199839604735, guid: 26c6bcaeabe015d468a8e5673d63b64b, type: 3}
@@ -651,6 +680,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5681098925346127219}
     m_Modifications:
+    - target: {fileID: 1691770644129920659, guid: a5498a373cbddb64582d7e0779e927dc, type: 3}
+      propertyPath: m_fontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691770644129920659, guid: a5498a373cbddb64582d7e0779e927dc, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 8415406022151473039, guid: a5498a373cbddb64582d7e0779e927dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 990
@@ -690,6 +727,10 @@ PrefabInstance:
     - target: {fileID: 8415406022151473039, guid: a5498a373cbddb64582d7e0779e927dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8707835806408576527, guid: a5498a373cbddb64582d7e0779e927dc, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -116
       objectReference: {fileID: 0}
     - target: {fileID: 8841574873718824181, guid: a5498a373cbddb64582d7e0779e927dc, type: 3}
       propertyPath: m_Name

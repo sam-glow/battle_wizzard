@@ -53,7 +53,7 @@ public class char_select : MonoBehaviour
 
             for (int j = 0; j < player.stats.Count; j++)
             {
-                player.stats[j].name = stats.stats[j];
+                player.stats[j].text = stats.stats[j];
             }
         }
     }
@@ -72,9 +72,9 @@ public class char_select : MonoBehaviour
             is_dirty = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+        if (Input.GetKeyDown(KeyCode.Joystick2Button4) || Input.GetKeyDown(KeyCode.Joystick2Button5))
         {
-            currernt_selection.p1_char_selection = currernt_selection.p1_char_selection == 0 ? 1 : 0;
+            currernt_selection.p2_char_selection = currernt_selection.p2_char_selection == 0 ? 1 : 0;
             is_dirty = true;
         }
 
