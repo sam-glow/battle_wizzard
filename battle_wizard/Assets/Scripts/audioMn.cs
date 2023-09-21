@@ -23,6 +23,9 @@ public class audioMn : MonoBehaviour
     void Start()
     {
         var bf = FindFirstObjectByType<battle_flow>();
+        if (bf == null)
+            return;
+
         bf.OnCountDown += OnCountDown;
         bf.OnVictory += OnVictory;
         bf.OnWinner += OnWinner;
