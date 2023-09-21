@@ -69,13 +69,13 @@ public class char_select : MonoBehaviour
         bool is_dirty = false;
         if (Input.GetKeyDown(KeyCode.Joystick1Button4) || Input.GetKeyDown(KeyCode.Joystick1Button5))
         {
-            currernt_selection.p1_char_selection = currernt_selection.p1_char_selection == 0 ? 1 : 0;
+            currernt_selection.p1_char_selection = (currernt_selection.p1_char_selection + 1) % 6;
             is_dirty = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Joystick2Button4) || Input.GetKeyDown(KeyCode.Joystick2Button5))
         {
-            currernt_selection.p2_char_selection = currernt_selection.p2_char_selection == 0 ? 1 : 0;
+            currernt_selection.p2_char_selection = (currernt_selection.p2_char_selection + 1) % 6;
             is_dirty = true;
         }
 
