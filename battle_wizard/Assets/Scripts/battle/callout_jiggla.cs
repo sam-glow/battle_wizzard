@@ -60,7 +60,7 @@ public class callout_jiggla : MonoBehaviour
         else
         {
             vibration_timer = 0f;
-            transform.localPosition = initial_ap;
+            rt.anchoredPosition = initial_ap;
             ShowHide(false);
         }
     }
