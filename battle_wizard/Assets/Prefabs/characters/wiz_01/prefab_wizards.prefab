@@ -52,7 +52,7 @@ MonoBehaviour:
   prefab_wizzard_03_left: {fileID: 6349734875667643304, guid: e30cd7c0280845445b39713f8bdc8c9c, type: 3}
   prefab_wizzard_03_right: {fileID: 6349734875667643304, guid: b8a22127de80fb14ba6ef64904d494a4, type: 3}
   prefab_wizzard_04_left: {fileID: 6349734875667643304, guid: cdf5462812d64ac4e85789726db3a110, type: 3}
-  prefab_wizzard_04_right: {fileID: 6349734875667643304, guid: a061b094e13ca464898a1337ea323b5a, type: 3}
+  prefab_wizzard_04_right: {fileID: 6349734875667643304, guid: b6d42cb69405089448cc0e0918a99f48, type: 3}
   prefab_wizzard_05_left: {fileID: 6349734875667643304, guid: a061b094e13ca464898a1337ea323b5a, type: 3}
   prefab_wizzard_05_right: {fileID: 6349734875667643304, guid: 951eea341b9df18408759d8815a14b9c, type: 3}
   prefab_wizzard_06_left: {fileID: 6349734875667643304, guid: 8b2cc52c2e4f0d5488d1064e669c4f74, type: 3}
