@@ -99,7 +99,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fireball!
+  m_text: aspersions on your prowss
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 485856018989425439d94b164578e089, type: 2}
   m_sharedMaterial: {fileID: 2397367924527954005, guid: 485856018989425439d94b164578e089, type: 2}
@@ -126,11 +126,11 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
+  m_fontSize: 4
   m_fontSizeBase: 6
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 2
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 4
   m_fontSizeMax: 8
   m_fontStyle: 0
   m_HorizontalAlignment: 1

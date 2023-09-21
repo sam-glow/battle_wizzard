@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1899021002056778063}
   - component: {fileID: 7666741640452545391}
+  - component: {fileID: 6188704678516063371}
   m_Layer: 0
   m_Name: prefab_wizards
   m_TagString: Untagged
@@ -46,3 +47,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab_wizzard_01_left: {fileID: 6349734875667643304, guid: 34692b388caa7f34fb7792b6c62e69d9, type: 3}
   prefab_wizzard_01_right: {fileID: 6349734875667643304, guid: c509eb3f29408bd4a9209cff412fe625, type: 3}
+--- !u!114 &6188704678516063371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948128919985929329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581dc43bd814a2c4ca81f4bc6298488a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yellow_spell: {fileID: 8300000, guid: be5a10a1eba6ce745bb736ce19562a9a, type: 3}
+  blue_spell: {fileID: 8300000, guid: cb8ca2b1ba82029419ebf9a573e9d97c, type: 3}
+  red_spell: {fileID: 8300000, guid: 83e53657a56e53544b1533230a45e33a, type: 3}
+  DeathClip: {fileID: 8300000, guid: 2abc1ef656b75994580ca8277773c2cb, type: 3}
+  CelebrateClip: {fileID: 8300000, guid: 0b84191f8566c4046b21b0b33dafc536, type: 3}
+  countdownMusic: {fileID: 8300000, guid: d0fce90ef3eab7b4786c2c3d256f90ff, type: 3}
+  battleMusic: {fileID: 0}
+  victoryMusic: {fileID: 8300000, guid: f420d051326380b40b7a7a3b8b79de6a, type: 3}
+  WinnerMusic: {fileID: 8300000, guid: f420d051326380b40b7a7a3b8b79de6a, type: 3}
