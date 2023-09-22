@@ -29,6 +29,7 @@ public class char_select : MonoBehaviour
         p1_locked = p2_locked = false;
 
         AudioSource source = gameObject.AddComponent<AudioSource>();
+        source.loop = music;
         source.loop = true;
         source.volume = 0.5f;
         source.Play();

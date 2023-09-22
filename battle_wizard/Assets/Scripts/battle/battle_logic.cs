@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using AmplifyShaderEditor;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class battle_logic : MonoEditorDebug
 {
